@@ -193,21 +193,13 @@ export class PaylineCore {
     private async _runAction(client: any, action: string, args: any): Promise<any> {
         // args.version = args.version || this.paylineVersion;
         const _args: any = this.ensureAttributes(args);
-        // console.log("args - _args", args, _args);
-        // console.log("client - action", client, action);
-        try {
-            const response = await client[this.actionMethodName(action)](_args);
-            const result = this.extractResult(response);
-            debug(`action ${action} got result ${JSON.stringify(result)} from response ${JSON.stringify(response)}`);
-            if (this.isResultSuccessful(result)) {
-                console.log("isResultSuccessful - true", response);
-                return response;
-            } else {
-                console.log("isResultSuccessful - false", response);
-                throw response;
-            }
-        } catch (error) {
-            console.log("client error", error);
+        const response = await client[this.actionMethodName(action)](_args);
+        const result = this.extractResult(response);
+        debug(`action ${action} got result ${JSON.stringify(result)} from response ${JSON.stringify(response)}`);
+        if (this.isResultSuccessful(result)) {
+            return response;
+        } else {
+            throw response;
         }
     }
 }
