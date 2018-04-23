@@ -134,13 +134,25 @@ export default class Payline extends PaylineCore {
 
     public async doReAuthorization(transactionID: string, payment: Payment, referencePrefix?: string,
                                    currency?: CURRENCIES, order: Order = {}): Promise<TransactionResult> {
-        this.setPaymentDefaults(payment, ACTIONS.AUTHORIZATION, currency);
-        this.setOrderDefaults(order, referencePrefix, currency, payment.amount);
-        return this.extractTransactionalResult(await this.runAction("doReAuthorization", {
-            transactionID,
-            payment,
-            order,
-        }));
+        try {
+            this.setPaymentDefaults(payment, ACTIONS.AUTHORIZATION, currency);            
+        } catch (error) {
+            console.log("SetPaymentDefaults", error);
+        }
+        try {
+            this.setOrderDefaults(order, referencePrefix, currency, payment.amount);
+        } catch (error) {
+            console.log("SetOrderDefaults", error);
+        }
+        try {
+            return this.extractTransactionalResult(await this.runAction("doReAuthorization", {
+                transactionID,
+                payment,
+                order,
+            }));    
+        } catch (error) {
+            console.log("extractTransactionalResult", error);
+        }
     }
 
     public async doCapture(transactionID, payment: Payment, currency?: CURRENCIES): Promise<TransactionResult> {

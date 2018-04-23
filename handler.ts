@@ -79,12 +79,8 @@ export const doReAuthorization = async (event, context, callback) => {
     let snsPayload = JSON.parse(event.Records[0].Sns.Message);
     console.log(snsPayload);
     // Execute function
-    try {
-        result(callback, await payline(snsPayload).doReAuthorization(snsPayload.transactionID, snsPayload.payment,
+    result(callback, await payline(snsPayload).doReAuthorization(snsPayload.transactionID, snsPayload.payment,
             snsPayload.referencePrefix, snsPayload.payment.currency, snsPayload.order));
-    } catch (error) {
-        console.log(error);        
-    }
 };
 
 export const doReAuthorizationManual = async (event, context, callback) => {
