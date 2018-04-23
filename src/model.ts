@@ -10,7 +10,7 @@ export type OperationsProperty<T> = {[key in Operation]:T};
 export enum CURRENCIES {
     EUR = 978,
     USD = 840,
-    GBP = 826,
+    GBP = 826
 }
 
 export enum ACTIONS {
@@ -20,7 +20,7 @@ export enum ACTIONS {
 }
 
 export enum MODE {
-    CPT = "CPT",
+    CPT = "CPT"
 }
 
 export interface Wallet {
@@ -33,13 +33,13 @@ export interface Wallet {
     comment?: string,
     default?: string,
     cardStatus?: string,
-    cardBrand?: string,
+    cardBrand?: string
 }
 
 export interface PaymentData {
     transactionID: string,
     network: string,
-    tokenData: string,
+    tokenData: string
 }
 
 export interface Card {
@@ -54,7 +54,7 @@ export interface Card {
     cardPresent?: string,
     cardholder?: string,
     token?: string,
-    paymentData?: PaymentData,
+    paymentData?: PaymentData
 }
 
 export interface Payment {
@@ -63,14 +63,14 @@ export interface Payment {
     action?: ACTIONS,
     mode?: MODE,
     contractNumber?: string,
-    softDescriptor?: string,
+    softDescriptor?: string
 }
 
 export interface Order {
     ref?: string,
     amount?: number,
     currency?: CURRENCIES,
-    date?: Date,
+    date?: Date
 }
 
 /**
