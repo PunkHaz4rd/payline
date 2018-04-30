@@ -74,16 +74,16 @@ export const doAuthorization = async (event, context, callback) => {
         event.referencePrefix, event.currency, event.order));
 };
 
-export const doReAuthorization = async (event, context, callback) => {
-    // Get params from SNS payload
-    let snsPayload = JSON.parse(event.Records[0].Sns.Message);
-    console.log(snsPayload);
-    // Execute function
-    result(callback, await payline(snsPayload).doReAuthorization(snsPayload.transactionID, snsPayload.payment,
-            snsPayload.referencePrefix, snsPayload.payment.currency, snsPayload.order));
-};
+// export const doReAuthorization = async (event, context, callback) => {
+//     // Get params from SNS payload
+//     let snsPayload = JSON.parse(event.Records[0].Sns.Message);
+//     console.log(snsPayload);
+//     // Execute function
+//     result(callback, await payline(snsPayload).doReAuthorization(snsPayload.transactionID, snsPayload.payment,
+//             snsPayload.referencePrefix, snsPayload.payment.currency, snsPayload.order));
+// };
 
-export const doReAuthorizationManual = async (event, context, callback) => {
+export const doReAuthorization = async (event, context, callback) => {
     result(callback, await payline(event).doReAuthorization(event.transactionID, event.payment,
         event.referencePrefix, event.currency, event.order));
 };
